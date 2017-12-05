@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
   Route,
+  IndexRoute,
+  BrowserHistory
   } from 'react-router-dom';
 
 
 //components
 import Header from './components/headerComponent/header';
-import Homepage from './components/pages/homePage';
+import FilteredPlayers from './components/pages/homePage';
 import Team from './components/pages/team';
 import Facts from './components/pages/facts';
 import History from './components/pages/history';
@@ -27,7 +29,7 @@ ReactDOM.render(
       
       <Header />
 
-        <Route exact path='/' component={Homepage} />
+        <Route exact path='/' component={FilteredPlayers} />
         <Route exact path='/team' component={Team} />
         <Route exact path='/facts' component={Facts} />
         <Route exact path='/history' component={History} />
