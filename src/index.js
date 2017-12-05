@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-  IndexRoute,
-  BrowserHistory
-  } from 'react-router-dom';
+ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 
 //components
 import Header from './components/headerComponent/header';
 import FilteredPlayers from './components/pages/homePage';
+import PlayerDetail from './components/pages/playerDetail';
 import Team from './components/pages/team';
 import Facts from './components/pages/facts';
 import History from './components/pages/history';
@@ -19,28 +15,38 @@ import Sights from './components/pages/sights';
 import Food from './components/pages/food';
 import Geography from './components/pages/geography';
 
-//includes
-import './Assets/css/default.min.css'
 
+//includes
+import './Assets/css/default.min.css';
+
+ class App extends React.Component {
+          render() {
+            return (
+              <div>
+                
+                <Header />
+                {this.props.children}
+              </div>
+
+            )
+          }
+    };
 
 ReactDOM.render(
-      <Router>
-      <div className="App">
-      
-      <Header />
+      <Router history={browserHistory} >
+          <Route path='/' component={App} >
+          <IndexRoute component={FilteredPlayers}/>
+          <Route path="players/:id" component={PlayerDetail} />
+        <Route  path='/team' component={Team} />
+        <Route path='/facts' component={Facts} />
+        <Route path='/history' component={History} />
+        <Route path='/origin' component={Origin}/>
+        <Route path='/sights' component={Sights}/>
+        <Route path='/food' component={Food}/>
+        <Route path='/geography' component={Geography}/>
 
-        <Route exact path='/' component={FilteredPlayers} />
-        <Route exact path='/team' component={Team} />
-        <Route exact path='/facts' component={Facts} />
-        <Route exact path='/history' component={History} />
-        <Route exact path='/origin' component={Origin}/>
-        <Route exact path='/sights' component={Sights}/>
-        <Route exact path='/food' component={Food}/>
-        <Route exact path='/geography' component={Geography}/>
-
-     
-      </div>
-    </Router>,
+        </Route>
+    </Router>
+    ,
  document.getElementById('root')
-
 );
