@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 
 //components
 import Header from './components/headerComponent/header';
-import FilteredPlayers from './components/pages/homePage';
+import PlayerApp from './components/pages/homePage';
 import PlayerDetail from './components/pages/playerDetail';
 import Team from './components/pages/team';
 import Facts from './components/pages/facts';
@@ -35,7 +35,7 @@ import './Assets/css/default.min.css';
 ReactDOM.render(
       <Router history={browserHistory} >
           <Route path='/' component={App} >
-          <IndexRoute component={FilteredPlayers}/>
+          <IndexRoute component={PlayerApp}/>
           <Route path="players/:id" component={PlayerDetail} />
         <Route  path='/team' component={Team} />
         <Route path='/facts' component={Facts} />

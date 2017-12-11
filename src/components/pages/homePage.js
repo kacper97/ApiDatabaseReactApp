@@ -1,6 +1,22 @@
+
 import React, { Component } from 'react';
 import localCache from './localCache';
 var request = require('superagent') ;
+
+class SelectBox extends React.Component {
+      render() {
+           return (
+             <div className="col-md-10">
+            <input type="text" placeholder="Search" />
+            Sort by:
+            <select>
+              <option value="name">Alphabetical</option>
+              <option value="age">Newest</option>
+            </select>
+             </div>
+            );
+          }
+    }
 
 
 class PlayerListItem extends Component {
@@ -13,7 +29,6 @@ class PlayerListItem extends Component {
         );
     }
 }
-
 class PlayerList extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         if (this.props.list.length === nextProps.list.length ) {
@@ -22,7 +37,6 @@ class PlayerList extends Component {
             return true ;
         }     
     }
-
     render() {
         var items = this.props.list.map(function(item) {
             return <PlayerListItem key={item.name} player={item} />;
@@ -34,13 +48,10 @@ class PlayerList extends Component {
         );
     }
 }
-
-
 class FilteredPlayers extends Component {
     state = {
         searchText : ''
     };
-
     componentDidMount() {
         request.get('http://localhost:3000/players')
             .end(function(error, res){
