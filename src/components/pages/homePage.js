@@ -1,7 +1,7 @@
 import React from 'react';
 
 import _ from 'lodash';
-import Phones from './Data';
+import Players from './Data';
 import { Link } from 'react-router'; 
 
     class SelectBox extends React.Component {
@@ -14,69 +14,57 @@ import { Link } from 'react-router';
         this.handleChange( e, 'search', e.target.value);
     };
 
-    handleSortChange = (e) => {
-        this.handleChange(e, 'sort', e.target.value);
-    };
+
 
     render() {
         return (
             <div className="col-md-10">
-                <input type="text" placeholder="Search" 
+                <input type="text" placeholder="Search For Player" 
                     value={this.props.filterText}
                     onChange={this.handleTextChange} />
-         Sort by:
-                <select id="sort" value={this.props.order } 
-                    onChange={this.handleSortChange} >
-                    <option value="name">Alphabetical</option>
-                    <option value="age">Newest</option>
-                </select>
             </div>
         );
       }
   }
 
-    class PhoneItem extends React.Component {
+    class PlayerItem extends React.Component {
        render() {
            return (
-                <li className="thumbnail phone-listing">
-                  <Link to={'./phones/' + this.props.phone.id} className="thumb">
-                       <img src={"./phoneSpecs/" + this.props.phone.imageUrl} 
-                        alt={this.props.phone.name} /> </Link>
-                  <Link to={'./phones/' + this.props.phone.id}> {this.props.phone.name}</Link>
-                  <p>{this.props.phone.snippet}</p>
+                <li className=" player-listing">
+                  
+                  <Link to={'./players/' + this.props.player.id}> {this.props.player.name}</Link>
+
                 </li>
                ) ;
          }
      } ;
 
 
-    class FilteredPhoneList extends React.Component {
+    class FilteredPlayerList extends React.Component {
       render() {
-          var displayedPhones = this.props.phones.map(function(phone) {
-            return <PhoneItem key={phone.id} phone={phone } /> ;
+          var displayedPlayers = this.props.players.map(function(player) {
+            return <PlayerItem key={player.id} player={player } /> ;
           }) ;
           return (
                   <div className="col-md-10">
-                    <ul className="phones">
-                        {displayedPhones}
+                    <ul className="players">
+                        {displayedPlayers}
                     </ul>
                   </div>
             ) ;
       }
     }
 
-    class PhoneCatalogueApp extends React.Component {
-    state = { search: '', sort: 'name' };
+    class PlayerCatalogueApp extends React.Component {
+    state = { search: '' };
 
     handleChange = (type, value) => {
         if ( type === 'search' ) {
             this.setState( { search: value } ) ;
-        } else {
-            this.setState( { sort: value } ) ;
-        }
+        } 
     };
             render() {
-             let list = Phones.filter( (p) => {
+             let list = Players.filter( (p) => {
              return p.name.toLowerCase().search(
               this.state.search.toLowerCase() ) !== -1 ;
       } );
@@ -89,7 +77,7 @@ import { Link } from 'react-router';
                       <SelectBox onUserInput={this.handleChange } 
                              filterText={this.state.search} 
                              sort={this.state.sort} />
-                       <FilteredPhoneList phones={filteredList} />
+                       <FilteredPlayerList players={filteredList} />
                   </div> 
                   </div>                   
                 </div>
@@ -98,4 +86,4 @@ import { Link } from 'react-router';
     }
   }
 
-  export default PhoneCatalogueApp;
+  export default PlayerCatalogueApp;

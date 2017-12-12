@@ -29,7 +29,7 @@ class Header extends Component{
                 <a href="/Food">Food</a>
               </li>
                <li>
-                <a href="/Players">Players</a>
+                <a href="/Geography">Geography</a>
                 </li>   
               <li className="last">  
                 <a href="/Sights">Sights </a>

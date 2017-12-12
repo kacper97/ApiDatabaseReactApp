@@ -1,15 +1,15 @@
 class LocalCache {
 
         constructor() {
-           this.phone = null ;
+           this.player = null ;
         }
 
-        setPhone(phone) {
-           this.phone = phone ;
+        setPhone(player) {
+           this.player = player ;
         }
 
         getPhone() {
-           return this.phone;
+           return this.player;
         }
 
     }

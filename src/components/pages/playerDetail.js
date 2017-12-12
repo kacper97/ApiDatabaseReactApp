@@ -4,11 +4,11 @@
 
     class Specification extends React.Component {
       render(){
-          var phone = this.props.phone ;           
-          var availability = phone.availability.map(function(avb,index) {
+          var player = this.props.player ;           
+          var availability = player.availability.map(function(avb,index) {
               return <dd key={index}>{avb}</dd> ;
               }) ;
-          let dimensions = phone.sizeAndWeight.dimensions.map(function(dim,index) {
+          let dimensions = player.sizeAndWeight.dimensions.map(function(dim,index) {
               return  <dd key={index}>{dim}</dd> ;
               }) ;
           let display = (
@@ -25,44 +25,44 @@
                     <span>Battery</span>
                     <dl>
                       <dt>Type</dt>
-                      <dd>{phone.battery.type}</dd>
+                      <dd>{player.battery.type}</dd>
                       <dt>Talk Time</dt>
-                      <dd>{phone.battery.talkTime}</dd>
+                      <dd>{player.battery.talkTime}</dd>
                       <dt>Standby time (max)</dt>
-                      <dd>{phone.battery.standbyTime}</dd>
+                      <dd>{player.battery.standbyTime}</dd>
                     </dl>
                   </li> 
                   <li>
                     <span>Storage and Memory</span>
                     <dl>
                       <dt>RAM</dt>
-                      <dd>{phone.storage.ram}</dd>
+                      <dd>{player.storage.ram}</dd>
                       <dt>Internal Storage</dt>
-                      <dd>{phone.storage.flash}</dd>
+                      <dd>{player.storage.flash}</dd>
                     </dl>
                   </li>
                   <li>
                     <span>Connectivity</span>
                     <dl>
                       <dt>Network Support</dt>
-                      <dd>{phone.connectivity.cell}</dd>
+                      <dd>{player.connectivity.cell}</dd>
                       <dt>WiFi</dt>
-                      <dd>{phone.connectivity.wifi}</dd>
+                      <dd>{player.connectivity.wifi}</dd>
                       <dt>Bluetooth</dt>
-                      <dd>{phone.connectivity.bluetooth}</dd>
+                      <dd>{player.connectivity.bluetooth}</dd>
                       <dt>Infrared</dt>
-                      <dd>{phone.connectivity.infrared}</dd>
+                      <dd>{player.connectivity.infrared}</dd>
                       <dt>GPS</dt>
-                      <dd>{phone.connectivity.gps}</dd>
+                      <dd>{player.connectivity.gps}</dd>
                     </dl>
                   </li>
                   <li>
                     <span>Android</span>
                     <dl>
                       <dt>OS Version</dt>
-                      <dd>{phone.android.os}</dd>
+                      <dd>{player.android.os}</dd>
                       <dt>UI</dt>
-                      <dd>{phone.android.ui}</dd>
+                      <dd>{player.android.ui}</dd>
                     </dl>
                   </li>
                   <li>
@@ -71,47 +71,47 @@
                       <dt>Dimensions</dt>
                           {dimensions}
                        <dt>Weight</dt>
-                      <dd>{phone.sizeAndWeight.weight}</dd>
+                      <dd>{player.sizeAndWeight.weight}</dd>
                     </dl>
                   </li> 
                   <li>
                     <span>Display</span>
                     <dl>
                       <dt>Screen size</dt>
-                      <dd>{phone.display.screenSize}</dd>
+                      <dd>{player.display.screenSize}</dd>
                       <dt>Screen resolution</dt>
-                      <dd>{phone.display.screenResolution}</dd>
+                      <dd>{player.display.screenResolution}</dd>
                       <dt>Touch screen</dt>
-                      <dd>{phone.display.touchScreen}</dd>
+                      <dd>{player.display.touchScreen}</dd>
                     </dl>
                   </li>
                   <li>
                     <span>Hardware</span>
                     <dl>
                       <dt>CPU</dt>
-                      <dd>{phone.hardware.cpu}</dd>
+                      <dd>{player.hardware.cpu}</dd>
                       <dt>USB</dt>
-                      <dd>{phone.hardware.usb}</dd>
-                      <dt>Audio / headphone jack</dt>
-                      <dd>{phone.hardware.audioJack}</dd>
+                      <dd>{player.hardware.usb}</dd>
+                      <dt>Audio / headplayer jack</dt>
+                      <dd>{player.hardware.audioJack}</dd>
                       <dt>FM Radio</dt>
-                      <dd>{phone.hardware.fmRadio}</dd>
+                      <dd>{player.hardware.fmRadio}</dd>
                       <dt>Accelerometer</dt>
-                      <dd>{phone.hardware.accelerometer}</dd>
+                      <dd>{player.hardware.accelerometer}</dd>
                     </dl>
                   </li> 
                   <li>
                     <span>Camera</span>
                     <dl>
                       <dt>Primary</dt>
-                      <dd>{phone.camera.primary}</dd>
+                      <dd>{player.camera.primary}</dd>
                       <dt>Features</dt>
-                      <dd>{phone.camera.features.join(', ')}</dd>
+                      <dd>{player.camera.features.join(', ')}</dd>
                     </dl>
                   </li>
                   <li>
                     <span>Additional Features</span>
-                    <dd>{phone.additionalFeatures}</dd>
+                    <dd>{player.additionalFeatures}</dd>
                   </li>           
                   </ul>            
             </div>
@@ -127,27 +127,27 @@
     
     class ImagesSection extends React.Component { 
       render(){
-          var thumbImages = this.props.phone.images.map(function(img,index) {
+          var thumbImages = this.props.player.images.map(function(img,index) {
               return (
                 <li>
-                   <img key={index} src={"/phoneSpecs/" + img}
+                   <img key={index} src={"/playerSpecs/" + img}
                        alt="missing" />
                 </li>
                 ) ;
               } );
           var mainImage = (
-            <div className="phone-images">
-              <img src={"/phoneSpecs/" + this.props.phone.images[0]} 
-                    alt={this.props.phone.name}
-                    className="phone" />
+            <div className="player-images">
+              <img src={"/playerSpecs/" + this.props.player.images[0]} 
+                    alt={this.props.player.name}
+                    className="player" />
             </div>
             ) ;
             return (
                 <div>
                    {mainImage}
-                   <h1>{this.props.phone.name}</h1>
-                   <p>{this.props.phone.description}</p>
-                   <ul className="phone-thumbs">
+                   <h1>{this.props.player.name}</h1>
+                   <p>{this.props.player.description}</p>
+                   <ul className="player-thumbs">
                        {thumbImages}
                    </ul>
                   </div>
@@ -155,26 +155,26 @@
           }
     };
 
-    class PhoneDetail extends React.Component {
+    class PlayerDetail extends React.Component {
         state = { };
 
        componentDidMount() {
           request.get(
-             '/phoneSpecs/phones/' + this.props.params.id + '.json', (err, res) => {
+             '/playerSpecs/players/' + this.props.params.id + '.json', (err, res) => {
                 let json = JSON.parse(res.text);
-                localCache.setPhone(json);
+                localCache.setPlayer(json);
                 this.setState({});
            }) ;
       } 
 
        render(){
-          let display = <p>No phone details</p> ; 
-          let phone = localCache.getPhone();
-           if (phone) {
+          let display = <p>No player details</p> ; 
+          let player = localCache.getPlayer();
+           if (player) {
                   display =  (
                       <div>
-                         <ImagesSection phone={phone} />
-                         <Specification  phone={phone} />       
+                         <ImagesSection player={player} />
+                         <Specification  player={player} />       
                     </div>
                     ) ;
               }
@@ -186,4 +186,4 @@
       }
     };
 
-    export default PhoneDetail;
+    export default PlayerDetail;

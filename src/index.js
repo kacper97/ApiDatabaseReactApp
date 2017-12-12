@@ -1,8 +1,8 @@
   import { Router, Route, IndexRoute, browserHistory } from 'react-router';
   import React from 'react';
     import ReactDOM from 'react-dom';
-    import PhoneCatalogueApp from './components/pages/homePage';
-    import PhoneDetail from  './components/pages/playerDetail';
+    import PlayerCatalogueApp from './components/pages/homePage';
+    import PlayerDetail from  './components/pages/playerDetail';
 
 
 //components
@@ -33,16 +33,15 @@ import './Assets/css/default.min.css';
     ReactDOM.render( 
               <Router history={browserHistory} >
                 <Route path="/" component={App}  >
-                   <IndexRoute component={PhoneCatalogueApp}/>
-                   <Route path="phones/:id" component={PhoneDetail} />
-               <Route  path='/team' component={Team} />
-               <Route path='/facts' component={Facts} />
+                   <IndexRoute component={PlayerCatalogueApp}/>
+                   <Route path="phones/:id" component={PlayerDetail} />
+                <Route  path='/team' component={Team} />
+                <Route path='/facts' component={Facts} />
                 <Route path='/history' component={History} />
-               <Route path='/origin' component={Origin}/>
+                <Route path='/origin' component={Origin}/>
                 <Route path='/sights' component={Sights}/>
                 <Route path='/food' component={Food}/>
                 <Route path='/geography' component={Geography}/>
-
                 </Route>
               </Router>
             ,
