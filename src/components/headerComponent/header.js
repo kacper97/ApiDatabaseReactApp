@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Link
-  } from 'react-router';
+  } from 'react-router-dom';
 
 class Header extends Component{
       render(){
@@ -33,7 +33,7 @@ class Header extends Component{
                 <Link to="/Food">Food</Link>
               </li>
                <li>
-                <Link to="/Geography"> Geography</Link>
+                <Link to="/Players">Players</Link>
                 </li>   
               <li className="last">  
                 <Link to="/Sights">Sights </Link>
