@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Link
-  } from 'react-router-dom';
 
 class Header extends Component{
       render(){
         return(
         <header>
-
           <div className="poland">
             POLAND
           </div>
@@ -15,32 +11,31 @@ class Header extends Component{
           <nav>
             <ul>
               <li className="first">
-                <Link to="/"> Home </Link>
+                <a href="/"> Home </a>
               </li>
               <li>
-               <Link to="/Team">Team </Link>
+               <a href="/Team">Team </a>
               </li>
               <li>
-                <Link to="/History">History</Link>
+                <a href="/History">History</a>
               </li>
               <li>
-                <Link to="/Facts">Facts</Link>
+                <a href="/Facts">Facts</a>
               </li>
               <li>
-                <Link to="/Origin">Origin</Link>
+                <a href="/Origin">Origin</a>
               </li>
               <li>
-                <Link to="/Food">Food</Link>
+                <a href="/Food">Food</a>
               </li>
                <li>
-                <Link to="/Players">Players</Link>
+                <a href="/Players">Players</a>
                 </li>   
               <li className="last">  
-                <Link to="/Sights">Sights </Link>
+                <a href="/Sights">Sights </a>
               </li>
             </ul>
           </nav>
-         
         </header>
         );
       }

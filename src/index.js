@@ -1,44 +1,50 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-  } from 'react-router-dom';
+  import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+  import React from 'react';
+    import ReactDOM from 'react-dom';
+    import PhoneCatalogueApp from './components/pages/homePage';
+    import PhoneDetail from  './components/pages/playerDetail';
 
 
 //components
 import Header from './components/headerComponent/header';
-import Homepage from './components/pages/homePage';
 import Team from './components/pages/team';
 import Facts from './components/pages/facts';
 import History from './components/pages/history';
 import Origin from './components/pages/origin';
 import Sights from './components/pages/sights';
 import Food from './components/pages/food';
-import FilteredPlayers from './components/pages/players';
+import Geography from './components/pages/geography';
+
 
 //includes
-import './Assets/css/default.min.css'
+import './Assets/css/default.min.css';
 
+     class App extends React.Component {
+          render() {
+            return (
+              <div>
+                <Header />
+                {this.props.children}
+              </div>
+            )
+          }
+    };
 
-ReactDOM.render(
-      <Router>
-      <div className="App">
-      
-      <Header />
+    ReactDOM.render( 
+              <Router history={browserHistory} >
+                <Route path="/" component={App}  >
+                   <IndexRoute component={PhoneCatalogueApp}/>
+                   <Route path="phones/:id" component={PhoneDetail} />
+               <Route  path='/team' component={Team} />
+               <Route path='/facts' component={Facts} />
+                <Route path='/history' component={History} />
+               <Route path='/origin' component={Origin}/>
+                <Route path='/sights' component={Sights}/>
+                <Route path='/food' component={Food}/>
+                <Route path='/geography' component={Geography}/>
 
-        <Route exact path='/' component={Homepage} />
-        <Route exact path='/team' component={Team} />
-        <Route exact path='/facts' component={Facts} />
-        <Route exact path='/history' component={History} />
-        <Route exact path='/origin' component={Origin}/>
-        <Route exact path='/sights' component={Sights}/>
-        <Route exact path='/food' component={Food}/>
-        <Route exact path='/players' component={FilteredPlayers}/>
-
-     
-      </div>
-    </Router>,
- document.getElementById('root')
-
-);
+                </Route>
+              </Router>
+            ,
+      document.getElementById('root')
+    );

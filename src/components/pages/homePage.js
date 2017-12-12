@@ -1,31 +1,101 @@
-import React, { Component } from 'react';
-import poland from './img/poland.jpg';
-//bootstrap css container = container fluid
-class Homepage extends Component {
-  render() {
-    return (
-      <div className="container-fluid"> 
-      	<h1>
-      	Poland and facts about Poland
-      	</h1>
-      	<p>
-      	Poland officially the Republic of Poland (Polish: Rzeczpospolita Polska, is a country in Central Europe, bordered by Germany to the west; the Czech Republic and Slovakia to the south; Ukraine and Belarus to the east; and the Baltic Sea, Kaliningrad Oblast (a Russian exclave) and Lithuania to the north. The total area of Poland is 312,679 square kilometres, making it the 71st largest country in the world and the 9th largest in Europe. With a population of over 38.5 million people, Poland is the 34th most populous country in the world, the sixth most populous member of the European Union, and the most populous post-communist member of the European Union. Poland is a unitary state divided into 16 administrative subdivisions.
-      	</p>
-      	<p>
-		    Poland is an eastern European country on the Baltic Sea known for its medieval architecture, Jewish heritage and hearty cuisine. In the city of Krakow, 14th-century Wawel Castle rises above the medieval Old Town, home to Cloth Hall, a Renaissance trading post in Rynek Glówny (market square). Nearby is the Auschwitz-Birkenau concentration camp memorial, and Wieliczka Salt Mine, with tunnels to explore.
-		    </p>
-		    <p>
-		    Despite the vast casualties and destruction the country experienced during World War II, Poland managed to preserve much of its cultural wealth. There are 14 heritage sites inscribed on the UNESCO World Heritage and 54 Historical Monuments and many objects of cultural heritage in Poland. Since the end of the communist period, Poland has achieved a "very high" ranking in terms of human development, as well as gradually improving economic freedom. Poland is the sixth largest economy in the European Union and among the fastest rising economic states in the world. The country is the sole member nation of the European Union to have escaped a decline in GDP and in recent years was able to create probably the most varied GDP growth in its history. Furthermore, according to the Global Peace Index for 2014, Poland is one of the safest countries in the world to live in.
-		    </p>
+import React from 'react';
 
-    <div className= "image">
-    
-    <img src={poland} alt="Poland Map"/>  </div>
-    </div>
-  
+import _ from 'lodash';
+import Phones from './Data';
+import { Link } from 'react-router'; 
 
-    );
+    class SelectBox extends React.Component {
+    handleChange = (e, type, value) => {
+        e.preventDefault();
+        this.props.onUserInput( type,value);
+    };
+
+    handleTextChange = (e) => {
+        this.handleChange( e, 'search', e.target.value);
+    };
+
+    handleSortChange = (e) => {
+        this.handleChange(e, 'sort', e.target.value);
+    };
+
+    render() {
+        return (
+            <div className="col-md-10">
+                <input type="text" placeholder="Search" 
+                    value={this.props.filterText}
+                    onChange={this.handleTextChange} />
+         Sort by:
+                <select id="sort" value={this.props.order } 
+                    onChange={this.handleSortChange} >
+                    <option value="name">Alphabetical</option>
+                    <option value="age">Newest</option>
+                </select>
+            </div>
+        );
+      }
   }
-}
 
-export default Homepage;
+    class PhoneItem extends React.Component {
+       render() {
+           return (
+                <li className="thumbnail phone-listing">
+                  <Link to={'./phones/' + this.props.phone.id} className="thumb">
+                       <img src={"./phoneSpecs/" + this.props.phone.imageUrl} 
+                        alt={this.props.phone.name} /> </Link>
+                  <Link to={'./phones/' + this.props.phone.id}> {this.props.phone.name}</Link>
+                  <p>{this.props.phone.snippet}</p>
+                </li>
+               ) ;
+         }
+     } ;
+
+
+    class FilteredPhoneList extends React.Component {
+      render() {
+          var displayedPhones = this.props.phones.map(function(phone) {
+            return <PhoneItem key={phone.id} phone={phone } /> ;
+          }) ;
+          return (
+                  <div className="col-md-10">
+                    <ul className="phones">
+                        {displayedPhones}
+                    </ul>
+                  </div>
+            ) ;
+      }
+    }
+
+    class PhoneCatalogueApp extends React.Component {
+    state = { search: '', sort: 'name' };
+
+    handleChange = (type, value) => {
+        if ( type === 'search' ) {
+            this.setState( { search: value } ) ;
+        } else {
+            this.setState( { sort: value } ) ;
+        }
+    };
+            render() {
+             let list = Phones.filter( (p) => {
+             return p.name.toLowerCase().search(
+              this.state.search.toLowerCase() ) !== -1 ;
+      } );
+      let filteredList = _.sortBy(list, this.state.sort) ;
+         return (
+                <div className="view-container">
+                <div className="view-frame">
+                   <div className="container-fluid">
+                   <div className="row">
+                      <SelectBox onUserInput={this.handleChange } 
+                             filterText={this.state.search} 
+                             sort={this.state.sort} />
+                       <FilteredPhoneList phones={filteredList} />
+                  </div> 
+                  </div>                   
+                </div>
+              </div>
+         );
+    }
+  }
+
+  export default PhoneCatalogueApp;

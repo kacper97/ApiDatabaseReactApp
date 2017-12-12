@@ -1,17 +1,17 @@
-
 class LocalCache {
 
-    constructor() {
-        this.players= [] ;
+        constructor() {
+           this.phone = null ;
+        }
+
+        setPhone(phone) {
+           this.phone = phone ;
+        }
+
+        getPhone() {
+           return this.phone;
+        }
+
     }
 
-    getAll() {
-        return this.players ;
-    }
-
-    populate(players) {
-        this.players = players;
-    }
-}
-
-export default (new LocalCache() );
+    export default (new LocalCache() );
