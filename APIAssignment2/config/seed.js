@@ -1,5 +1,9 @@
-exports.players = [
-  {
+var mongoose = require('mongoose');  
+  mongoose.connect('mongodb://localhost/playerdb');
+  var Player = require('../api/players/player.model');
+
+  Player.find({}).remove(function() {
+    Player.create(  {
           id: 1,
           name: "Wojciech Szczesny",
           club: "Juventus",
@@ -149,4 +153,8 @@ exports.players = [
           club: "Lechia Gdańsk",
           number: "29"
         }
-]
+    }, function () {
+        process.exit()
+    });
+
+ });

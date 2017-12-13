@@ -1,35 +1,22 @@
+var Player = require('./player.model');  
  var _ = require('lodash')
-    var datastore = require('../datastore');
-    var Player = require('./player.model');  // NEW line
 
     // Get all players
-    exports.index = function handleError(res, err) {
-    return res.status(500).json(err);
-      }
-
-        exports.index = function(req, res) {
-      Player.find(function (err, players) {
-        if(err) { return handleError(res, err); }
-        console.log('index ok' + players[0]);
-        return res.status(200).json(players);
-      });
-    } ;
+  exports.index = function(req, res) {
+      Post.find(function (err, players) {
+      if(err) { return handleError(res, err); }
+      return res.status(200).json(players);
+    });
+  } ;
 
 
     // Get a single player
     exports.show = function(req, res) {
-        var index = _.findIndex(datastore.players , 
-               function(player) {
-                  return player.id == req.params.id;
-            });      
-         if (index != -1) {
-            return res.status(200).json((datastore.players[index] ));
-          }
-          else {
-             return res.sendStatus(404);
-           }
-
-    };
+      Player.findById(req.params.id, function (err, player) {
+          if(err) { return handleError(res, err); }
+          return res.status(200).json(player);
+      });
+  } ;
 
    // Creates a new player in datastore.
 exports.create = function(req, res) {
