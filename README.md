@@ -45,10 +45,11 @@ To run the app, firstly user needs to run a command " gulp " that is used to min
 ## App Component Design.
 
 ![][image2]
+![][image3]
 
 ## UI Design.
 
-![][image3]
+
 ![][image4]
 
 ## Routing.
@@ -75,7 +76,7 @@ Also learned how to make a header that links to other pages of the web app, whic
 
 Learned that gulp.js is an open-source JavaScript toolkit by Fractal Innovations and the open source community at GitHub, used as a streaming build system in front-end web development, and I should have probobly just stuck with semantic and implemented comments and login/register pages, which was do-able as I've completed the labs.
 
-[image1]: ./model.png
-[image2]: ./design.png
-[image3]: ./screen.png
-[image4]: ./screen2.png
+[image1]: ./model.jpg
+[image2]: ./design.jpg
+[image3]: ./screen.jpg
+[image4]: ./screen2.jpg
