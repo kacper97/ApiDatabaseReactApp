@@ -77,6 +77,6 @@ Also learned how to make a header that links to other pages of the web app, whic
 Learned that gulp.js is an open-source JavaScript toolkit by Fractal Innovations and the open source community at GitHub, used as a streaming build system in front-end web development, and I should have probobly just stuck with semantic and implemented comments and login/register pages, which was do-able as I've completed the labs.
 
 [image1]: ./model.jpg
-[image2]: ./design.jpg
-[image3]: ./screen.jpg
-[image4]: ./screen2.jpg
+[image2]: ./design.JPG
+[image3]: ./screen.JPG
+[image4]: ./screen2.JPG
