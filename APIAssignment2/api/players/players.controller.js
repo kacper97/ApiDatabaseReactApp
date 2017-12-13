@@ -3,7 +3,7 @@ var Player = require('./player.model');
 
     // Get all players
   exports.index = function(req, res) {
-      Post.find(function (err, players) {
+      Player.find(function (err, players) {
       if(err) { return handleError(res, err); }
       return res.status(200).json(players);
     });

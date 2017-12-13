@@ -152,7 +152,6 @@ var mongoose = require('mongoose');
           name: "Sebastian Mila",
           club: "Lechia Gdańsk",
           number: "29"
-        }
     }, function () {
         process.exit()
     });

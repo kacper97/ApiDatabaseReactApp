@@ -33,7 +33,7 @@ import { Link } from 'react-router';
            return (
                 <li className=" player-listing">
                   
-                  <Link to={'/players/' + this.props.player.id}> {this.props.player.name}</Link>
+                   <Link to={'/player/' + this.props.player._id }> {this.props.player.name}</Link>
                   <p> Club Name : {this.props.player.club} </p>
                   <p> Jearsey Number: {this.props.player.number} </p>
 
