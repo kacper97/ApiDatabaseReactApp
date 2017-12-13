@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'superagent';
  import api from './test/stubAPI.js'  // NEW
- import Players from './Data';
+ import buttons from './config/buttonsConfig';
 import _ from 'lodash';
 
 import { Link } from 'react-router'; 
@@ -16,8 +16,6 @@ import { Link } from 'react-router';
         this.handleChange( e, 'search', e.target.value);
     };
 
-
-
     render() {
         return (
             <div className="col-md-10">
@@ -28,7 +26,6 @@ import { Link } from 'react-router';
         );
       }
   }
-
 
     class PlayerItem extends React.Component {
        render() {
@@ -63,20 +60,22 @@ import { Link } from 'react-router';
 
     class PlayerApp extends React.Component {
 
-    state = { search: '' };
 
       componentDidMount() {
          request.get('http://localhost:3000/api/players')
-            .end((error, res) => {
+           .end((error, res) => {
               if (res) {
                 var players = JSON.parse(res.text);
                 api.initialize(players);
                 this.setState({}) ;                
-              } else {
+               } else {
                 console.log(error );
               }
             }) ; 
         }
+
+            state = { search: '' };
+
 
     handleChange = (type, value) => {
         if ( type === 'search' ) {
@@ -84,13 +83,43 @@ import { Link } from 'react-router';
         } 
     };
 
-            render() {
-              let list = Players.filter( (p) => {
-             return p.name.toLowerCase().search(
-              this.state.search.toLowerCase() ) !== -1 ;
-        } );
-              let filteredList = _.sortBy(list, this.state.sort) ;
-         return (
+       deletePlayer = (k) => {
+        request
+          .del('http://localhost:3000/api/players/' + k)
+          .end( (err, res) => {
+              if (err || !res.ok) {
+                 alert('Error deleting player');
+               } else {
+                  api.delete(k);
+                  this.setState( {} ) ;
+               } 
+          });
+    };
+         
+         addPlayer = (n, c) => {
+        request
+           .post('http://localhost:3000/api/players')
+           .send({ name: n, club: c })
+           .set('Content-Type', 'application/json')
+           .end( (err, res) => {
+               if (err || !res.ok) {
+                  alert('Error adding player');
+               } else {
+                   let newPlayer = JSON.parse(res.text);
+                   api.add(newPlayer.name, 
+                        newPlayer.club, 
+                        );
+                   this.setState({}) ;    
+               }
+            } ); 
+    };
+
+
+
+        render() {
+        var list = api.getAll() ;  
+        let filteredList = _.sortBy(list, this.state.sort) ;
+          return (
                 <div className="view-container">
                 <div className="view-frame">
                    <div className="container-fluid">

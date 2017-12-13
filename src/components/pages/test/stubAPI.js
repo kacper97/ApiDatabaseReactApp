@@ -26,17 +26,18 @@ class StubAPI {
           return newLen > len ;
       }
 
-         update(id,n,c) {
-          var index = _.findIndex(this.player, 
+        update(id,n,c) {
+          var index = _.findIndex(this.players, 
               (player) => player._id === id
           );      
           if (index !== -1) {
-              this.player.splice(index, 1, 
-                  { _id: id, name: n, club: c });
+              this.players.splice(index, 1, 
+                  { _id: id, name: n, club: c});
               return true ;
           }
           return false ;
       }
+
 
     }
 
