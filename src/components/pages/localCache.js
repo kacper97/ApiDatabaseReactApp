@@ -4,11 +4,11 @@ class LocalCache {
            this.player = null ;
         }
 
-        setPhone(player) {
+        setPlayer(player) {
            this.player = player ;
         }
 
-        getPhone() {
+        getPlayer() {
            return this.player;
         }
 

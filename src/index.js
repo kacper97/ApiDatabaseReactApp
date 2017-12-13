@@ -34,7 +34,7 @@ import './Assets/css/default.min.css';
               <Router history={browserHistory} >
                 <Route path="/" component={App}  >
                    <IndexRoute component={PlayerCatalogueApp}/>
-                   <Route path="phones/:id" component={PlayerDetail} />
+                   <Route path="players/:id" component={PlayerDetail} />
                 <Route  path='/team' component={Team} />
                 <Route path='/facts' component={Facts} />
                 <Route path='/history' component={History} />
