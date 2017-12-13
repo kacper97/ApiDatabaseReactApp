@@ -1,6 +1,6 @@
 import React from 'react';
 import request from 'superagent';
- import api from './test/stubAPI.js';  // NEW
+import api from './test/stubAPI.js';  // NEW
  //import buttons from './config/buttonsConfig';
 import Players from './Data';
 import _ from 'lodash';
@@ -61,30 +61,7 @@ import { Link } from 'react-router';
 
     class PlayerApp extends React.Component {
 
-
-      componentDidMount() {
-         request.get('http://localhost:3000/api/players')
-           .end((error, res) => {
-              if (res) {
-                var players = JSON.parse(res.text);
-                api.initialize(players);
-                this.setState({}) ;                
-               } else {
-                console.log(error );
-              }
-            }) ; 
-        }
-
-            state = { search: '' };
-
-
-    handleChange = (type, value) => {
-        if ( type === 'search' ) {
-            this.setState( { search: value } ) ;
-        } 
-    };
-
-       deletePlayer = (k) => {
+        deletePlayer = (k) => {
         request
           .del('http://localhost:3000/api/players/' + k)
           .end( (err, res) => {
@@ -116,11 +93,33 @@ import { Link } from 'react-router';
     };
 
 
+      componentDidMount() {
+         request.get('http://localhost:3000/api/players')
+           .end((error, res) => {
+              if (res) {
+                var players = JSON.parse(res.text);
+                api.initialize(players);
+                this.setState({}) ;                
+               } else {
+                console.log(error );
+              }
+            }) ; 
+        }
 
+  
+  state = { search: '' };
+
+    handleChange = (type, value) => {
+        if ( type === 'search' ) {
+            this.setState( { search: value } ) ;
+        } 
+    };
 
      
+
 render() {
-   ///  var list = api.getAll() ; 
+
+            ///  var list = api.getAll() ; 
              let list = Players.filter( (p) => {
              return p.name.toLowerCase().search(
               this.state.search.toLowerCase() ) !== -1 ;

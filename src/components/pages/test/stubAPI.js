@@ -5,9 +5,10 @@ class StubAPI {
       }
       
       initialize(players) {    // NEW 
-          this.players = players
+          this.players = players;
           return null; 
       }
+
       delete(k) {
           let elements = _.remove(this.player, 
               (player) => player._id === k
