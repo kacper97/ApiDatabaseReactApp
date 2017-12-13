@@ -1,4 +1,3 @@
-
 var AllPlayers= [ 
      {
           "id": 1,

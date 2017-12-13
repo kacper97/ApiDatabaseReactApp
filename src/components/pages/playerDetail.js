@@ -4,20 +4,10 @@
 
      class ImagesSection extends React.Component { 
       render(){
-          var thumbImages = this.props.player.images.map(function(img,index) {
-              return (
-                <li>
-                   <img key={index} src={"/playerInfo/" + img}
-                       alt="missing" />
-                </li>
-                ) ;
-              } );
           var mainImage = (
             <div className="player-images">
-              <img src={"/playerInfo/" + this.props.player.images[0]} 
-                    alt={this.props.player.name}
-                    className="player" />
-            </div>
+              <img src={"/playerInfo/" + this.props.player.images[0]}  />
+           </div>
             ) ;
             return (
                 <div>

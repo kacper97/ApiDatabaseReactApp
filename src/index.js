@@ -1,12 +1,13 @@
   import { Router, Route, IndexRoute, browserHistory } from 'react-router';
   import React from 'react';
-    import ReactDOM from 'react-dom';
-    import PlayerCatalogueApp from './components/pages/homePage';
-    import PlayerDetail from  './components/pages/playerDetail';
+  import ReactDOM from 'react-dom';
+
 
 
 //components
 import Header from './components/headerComponent/header';
+import PlayerApp from './components/pages/homePage';
+import PlayerDetail from  './components/pages/playerDetail';
 import Team from './components/pages/team';
 import Facts from './components/pages/facts';
 import History from './components/pages/history';
@@ -33,8 +34,8 @@ import './Assets/css/default.min.css';
     ReactDOM.render( 
               <Router history={browserHistory} >
                 <Route path="/" component={App}  >
-                   <IndexRoute component={PlayerCatalogueApp}/>
-                   <Route path="players/:id" component={PlayerDetail} />
+                   <IndexRoute component={PlayerApp}/>
+                    <Route path="players/:id" component={PlayerDetail} />
                 <Route  path='/team' component={Team} />
                 <Route path='/facts' component={Facts} />
                 <Route path='/history' component={History} />

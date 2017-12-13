@@ -26,13 +26,15 @@ import { Link } from 'react-router';
         );
       }
   }
-
+0
     class PlayerItem extends React.Component {
        render() {
            return (
                 <li className=" player-listing">
                   
-                  <Link to={'./players/' + this.props.player.id}> {this.props.player.name}</Link>
+                  <Link to={'/players/' + this.props.player.id}> {this.props.player.name}</Link>
+                  <p> Club Name : {this.props.player.club} </p>
+                  <p> Jearsey Number: {this.props.player.number} </p>
 
                 </li>
                ) ;
@@ -55,7 +57,7 @@ import { Link } from 'react-router';
       }
     }
 
-    class PlayerCatalogueApp extends React.Component {
+    class PlayerApp extends React.Component {
     state = { search: '' };
 
     handleChange = (type, value) => {
@@ -86,4 +88,4 @@ import { Link } from 'react-router';
     }
   }
 
-  export default PlayerCatalogueApp;
+  export default PlayerApp;
