@@ -1,7 +1,8 @@
 import React from 'react';
 import request from 'superagent';
- import api from './test/stubAPI.js'  // NEW
- import buttons from './config/buttonsConfig';
+ import api from './test/stubAPI.js';  // NEW
+ //import buttons from './config/buttonsConfig';
+import Players from './Data';
 import _ from 'lodash';
 
 import { Link } from 'react-router'; 
@@ -116,8 +117,14 @@ import { Link } from 'react-router';
 
 
 
-        render() {
-        var list = api.getAll() ;  
+
+     
+render() {
+   ///  var list = api.getAll() ; 
+             let list = Players.filter( (p) => {
+             return p.name.toLowerCase().search(
+              this.state.search.toLowerCase() ) !== -1 ;
+      } );
         let filteredList = _.sortBy(list, this.state.sort) ;
           return (
                 <div className="view-container">

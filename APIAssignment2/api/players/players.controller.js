@@ -1,5 +1,6 @@
  var _ = require('lodash')
     var datastore = require('../datastore');
+    var Player = require('./player.model');  // NEW line
 
     // Get all players
     exports.index = function handleError(res, err) {
@@ -30,23 +31,14 @@
 
     };
 
-    // Creates a new player.
-    exports.create = function(req, res) {
-        var nextId = 0;
-        var last = _.last(datastore.players);
-        if (last != undefined) {
-           nextId = last.id + 1;
-        } else {
-          nextId = 1;
-        }
-        var player = {
-           id: nextId,
-           name: req.body.name,
-           club: req.body.club 
-        };
-        datastore.players.push(player);
+   // Creates a new player in datastore.
+exports.create = function(req, res) {
+      Player.create(req.body, function(err, player) {
+        if(err) { return handleError(res, err); }
         return res.status(201).json(player);
-    };
+      });
+};
+
 
     // Update an existing player in datastore.
 exports.update = function(req, res) {
@@ -60,7 +52,7 @@ exports.update = function(req, res) {
         });
     });
  }
- 
+
          
  
 // Deletes a player from datastore.
@@ -72,3 +64,4 @@ exports.destroy = function(req, res) {
             return res.sendStatus(200,'Deleted');
         });
     })
+}
