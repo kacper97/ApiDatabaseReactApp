@@ -14,6 +14,7 @@ and learn the vast information that I have provided on the web App. The App has 
  + All 25 Players have links
  + WebAPI
  + MONGODB Usage
+ + All 3 are linked together
 
 ## Installation requirements.
 . . . .  List of software used to develop the app . . . . . . . 
@@ -33,6 +34,13 @@ and learn the vast information that I have provided on the web App. The App has 
 + mongo (if needed to insert)
 + lodash
 + StubApi
++ node bin/www
++ node ./config/seed.js
++ mongod --dbpath X
++ mongo
++ show dbs
++ use x
++ db.players.insert({})
 
 When pulling the repo, user types in npm install, this will install all the things that are included in my package.json
 To run the app, firstly user needs to run a command " gulp " that is used to minimalise the CSS and to make sure the sight is running sufficiently by compressing SCSS into minimised CSS. Whilst this is running the user opens up another terminal. In that she/he types in "node bin/www" to make the wweb api running, where all the information about players is stored and which is linked to the main app. The user can add and remove entries using the site and also using the Mongo db database. User has working links to all 25 players to see what they are about
