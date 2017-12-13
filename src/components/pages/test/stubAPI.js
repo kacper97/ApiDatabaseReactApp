@@ -6,7 +6,7 @@ class StubAPI {
       
       initialize(players) {    // NEW 
           this.players = players;
-          return null; 
+          return true; 
       }
 
       delete(k) {
@@ -17,7 +17,7 @@ class StubAPI {
       }
 
         getAll() {
-            return this.player ;
+            return this.players ;
         }
 
         add(id,n,c) {

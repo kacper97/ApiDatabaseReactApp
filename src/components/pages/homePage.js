@@ -108,32 +108,28 @@ import { Link } from 'react-router';
 
   
   state = { search: '' };
-
+;
     handleChange = (type, value) => {
         if ( type === 'search' ) {
             this.setState( { search: value } ) ;
         } 
     };
 
-     
-
-render() {
-
-            ///  var list = api.getAll() ; 
-             let list = Players.filter( (p) => {
-             return p.name.toLowerCase().search(
-              this.state.search.toLowerCase() ) !== -1 ;
-      } );
-        let filteredList = _.sortBy(list, this.state.sort) ;
+        render() {
+              var players =  _.sortBy(api.getAll(), function(player){
+                return - players;
+              } 
+              ); 
           return (
                 <div className="view-container">
                 <div className="view-frame">
                    <div className="container-fluid">
                    <div className="row">
+                    
                       <SelectBox onUserInput={this.handleChange } 
                              filterText={this.state.search} 
                              sort={this.state.sort} />
-                       <FilteredPlayerList players={filteredList} />
+                      <FilteredPlayerList players={players} />
                   </div> 
                   </div>                   
                 </div>
