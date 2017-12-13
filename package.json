@@ -1,6 +1,6 @@
 {
-  "name": "assignment 2",
-  "version": "0.2.0",
+  "name": "assignment1",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.0.0",

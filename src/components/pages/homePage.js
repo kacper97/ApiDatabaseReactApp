@@ -1,7 +1,7 @@
 import React from 'react';
-
+import request from 'superagent';
+ import api from './test/stubAPI.js'  // NEW
 import _ from 'lodash';
-import Players from './Data';
 import { Link } from 'react-router'; 
 
     class SelectBox extends React.Component {
@@ -26,7 +26,7 @@ import { Link } from 'react-router';
         );
       }
   }
-0
+
     class PlayerItem extends React.Component {
        render() {
            return (
@@ -58,6 +58,65 @@ import { Link } from 'react-router';
     }
 
     class PlayerApp extends React.Component {
+           componentDidMount() {
+         request.get('http://localhost:3000/api/players')
+            .end((error, res) => {
+              if (res) {
+                var players = JSON.parse(res.text);
+                api.initialize(players);
+                this.setState({}) ;                
+              } else {
+                console.log(error );
+              }
+            }) ; 
+        }
+
+        updatePlayer = (key, n, c) => {
+        request
+           .put('http://localhost:3000/api/player/' + key )
+           .send({ name: n, club: c})
+           .set('Content-Type', 'application/json')
+           .end((err, res) => {
+             if (err || !res.ok) {
+               alert('Error updating');
+             } else {
+                api.update(key,n,c); 
+                this.setState({});      
+             }
+           });  
+    };
+
+
+       deletePlayer = (k) => {
+        request
+          .del('http://localhost:3000/api/players/' + k)
+          .end( (err, res) => {
+              if (err || !res.ok) {
+                 alert('Error deleting player');
+               } else {
+                  api.delete(k);
+                  this.setState( {} ) ;
+               } 
+          });
+    };
+
+    addPlayer = (n, c) => {
+        request
+           .post('http://localhost:3000/api/players')
+           .send({ name: n, club: c})
+           .set('Content-Type', 'application/json')
+           .end( (err, res) => {
+               if (err || !res.ok) {
+                  alert('Error adding player');
+               } else {
+                   let newPlayer = JSON.parse(res.text);
+                   api.add(newPlayer.name, 
+                        newPlayer.club);
+                   this.setState({}) ;    
+               }
+            } ); 
+    };
+
     state = { search: '' };
 
     handleChange = (type, value) => {
@@ -66,6 +125,7 @@ import { Link } from 'react-router';
         } 
     };
             render() {
+               var Players = api.getAll() ;
              let list = Players.filter( (p) => {
              return p.name.toLowerCase().search(
               this.state.search.toLowerCase() ) !== -1 ;
@@ -77,8 +137,7 @@ import { Link } from 'react-router';
                    <div className="container-fluid">
                    <div className="row">
                       <SelectBox onUserInput={this.handleChange } 
-                             filterText={this.state.search} 
-                             sort={this.state.sort} />
+                             filterText={this.state.search} />
                        <FilteredPlayerList players={filteredList} />
                   </div> 
                   </div>                   
